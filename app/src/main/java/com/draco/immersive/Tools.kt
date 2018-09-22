@@ -98,45 +98,19 @@ fun MainActivity.setSetting(group: Int, name: String, value: Any) {
 }
 
 fun MainActivity.immersiveModeReset() {
-    setSetting(SETTING_GLOBAL, "policy_control", "immersive.none=*")
+    setSetting(SETTING_GLOBAL, "policy_control", "immersive.none=*,-com.android.systemui")
 }
 
 fun MainActivity.immersiveModeNav() {
-    setSetting(SETTING_GLOBAL, "policy_control", "immersive.navigation=*")
+    setSetting(SETTING_GLOBAL, "policy_control", "immersive.navigation=*,-com.android.systemui")
 }
 
 fun MainActivity.immersiveModeStatus() {
-    setSetting(SETTING_GLOBAL, "policy_control", "immersive.status=*")
+    setSetting(SETTING_GLOBAL, "policy_control", "immersive.status=*,-com.android.systemui")
 }
 
-fun MainActivity.navReset() {
-    setSetting(SETTING_SECURE, "sysui_nav_bar", "space,recent;home;back,space")
-    val reset = AlertDialog.Builder(this)
-    reset.setTitle("Reset")
-    reset.setMessage("If you find some buttons are gone from your nav, either go to Settings -> Display -> Navigation Bar and reset your order preference, or if that doesn't work run this from ADB: settings delete secure sysui_nav_bar")
-    reset.setPositiveButton("Ok", null)
-    reset.show()
+fun MainActivity.immersiveModeFull() {
+    setSetting(SETTING_GLOBAL, "policy_control", "immersive.full=*,-com.android.systemui")
 }
 
-fun MainActivity.navWide() {
-    var default = "recent;home;back"
-    val current = getSetting(SETTING_SECURE, "sysui_nav_bar", String)
-    if ("recent;home;back" in current.toString() && current != null) {
-        default = "recent;home;back"
-    } else if ("back;home;recent" in current.toString()  && current != null) {
-        default = "back;home;recent"
-    }
-    setSetting(SETTING_SECURE, "sysui_nav_bar", default)
-}
-
-fun MainActivity.navNarrow() {
-    var default = "recent;home;back"
-    val current = getSetting(SETTING_SECURE, "sysui_nav_bar", String)
-    if ("recent;home;back" in current.toString()) {
-        default = "recent;home;back"
-    } else if ("back;home;recent" in current.toString()) {
-        default = "back;home;recent"
-    }
-    setSetting(SETTING_SECURE, "sysui_nav_bar", "space,space,$default,space,space")
-}
 

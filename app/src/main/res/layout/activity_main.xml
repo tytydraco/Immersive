@@ -34,28 +34,14 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_immersive_status"
         android:id="@+id/btn_immersive_status"/>
-
     <Button
-        android:visibility="gone"
-        android:background="@color/colorPrimary"
+        android:layout_weight="0.333"
+        android:background="@color/colorAccent"
+        android:textSize="30sp"
+        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_nav_reset"
-        android:id="@+id/btn_nav_reset"/>
-    <Button
-        android:visibility="gone"
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_nav_wide"
-        android:id="@+id/btn_nav_wide"/>
-    <Button
-        android:visibility="gone"
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_nav_narrow"
-        android:id="@+id/btn_nav_narrow"/>
-
+        android:text="@string/btn_immersive_full"
+        android:id="@+id/btn_immersive_full"/>
 
 </LinearLayout>
