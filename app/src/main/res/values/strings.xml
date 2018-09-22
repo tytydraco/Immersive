@@ -1,7 +1,3 @@
 <resources>
     <string name="app_name">Immersive</string>
-    <string name="btn_immersive_status">Enable Immersive Status</string>
-    <string name="btn_immersive_nav">Enable Immersive Navigation Bar</string>
-    <string name="btn_immersive_full">Enable Immersive Full</string>
-    <string name="btn_immersive_reset">Reset Immersive</string>
 </resources>

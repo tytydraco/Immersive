@@ -7,41 +7,12 @@
     tools:context="com.draco.immersive.MainActivity"
     android:orientation="vertical">
 
-    <Button
-        android:layout_weight="0.333"
-        android:background="@color/colorAccent"
-        android:textSize="30sp"
-        android:padding="20dp"
+    <LinearLayout
+        android:id="@+id/optContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_immersive_reset"
-        android:id="@+id/btn_immersive_reset"/>
-    <Button
-        android:layout_weight="0.333"
-        android:background="@color/colorAccent"
-        android:textSize="30sp"
-        android:padding="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_immersive_nav"
-        android:id="@+id/btn_immersive_nav"/>
-    <Button
-        android:layout_weight="0.333"
-        android:background="@color/colorAccent"
-        android:textSize="30sp"
-        android:padding="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_immersive_status"
-        android:id="@+id/btn_immersive_status"/>
-    <Button
-        android:layout_weight="0.333"
-        android:background="@color/colorAccent"
-        android:textSize="30sp"
-        android:padding="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_immersive_full"
-        android:id="@+id/btn_immersive_full"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="top" />
 
 </LinearLayout>

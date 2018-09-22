@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Immersive">
+        <Preference
+            android:title="Reset"
+            android:summary="Reset all immersive settings to default."
+            android:key="reset" />
+        <Preference
+            android:title="Status Bar"
+            android:summary="Hide the status bar in all apps."
+            android:key="status" />
+        <Preference
+            android:title="Navigation Bar"
+            android:summary="Hide the navigation bar in all apps."
+            android:key="nav" />
+        <Preference
+            android:title="Full"
+            android:summary="Hide both the status bar and the navigation bar in all apps."
+            android:key="full" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Settings">
+        <CheckBoxPreference
+            android:title="Exclude SystemUI"
+            android:summary="Enable this if your device takes a long time to wake up. For this to take effect, reapply your immersive preference."
+            android:key="exclude_systemui" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="About">
+        <Preference
+            android:title="Developer"
+            android:summary="Draco (Tyler Nijmeh)"
+            android:key="developer" />
+        <Preference
+            android:title="Version"
+            android:summary=""
+            android:key="version" />
+        <Preference
+            android:title="Contact"
+            android:summary="Email me for questions, comments, and concerns."
+            android:key="contact" />
+    </PreferenceCategory>
+</PreferenceScreen>
