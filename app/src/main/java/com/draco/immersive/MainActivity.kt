@@ -1,6 +1,7 @@
 package com.draco.immersive
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -9,20 +10,23 @@ import android.os.Bundle
 import android.preference.CheckBoxPreference
 import android.preference.PreferenceManager
 import android.provider.Settings
+import android.util.AttributeSet
+import android.view.View
 import android.widget.Button
 
 
 class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private lateinit var optFrag: OptionFragment
+    private lateinit var prefs: SharedPreferences
+    private var excludeSystemUI = false
+
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
         if (p1 == "exclude_systemui") {
             if (p0 != null)
                 excludeSystemUI = p0.getBoolean("exclude_systemui", false)
         }
     }
-
-    private lateinit var optFrag: OptionFragment
-    private lateinit var prefs: SharedPreferences
-    private var excludeSystemUI = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +40,21 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
             optFrag = OptionFragment()
             optFrag.retainInstance = true
 
+            // task to execute after optFrag is initialized
+            optFrag.callback = {
+                // set as currently set
+                excludeSystemUI = optFrag.preferenceManager.sharedPreferences.getBoolean("exclude_systemui", false)
+
+                // check for permission before proceeding
+                permissionCheck(this) {
+                    setupFragmentFunctions()
+                }
+            }
+
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.optContainer, optFrag)
                     .commit()
-        }
-
-        // check for permission before proceeding
-        permissionCheck(this) {
-            setupFragmentFunctions()
         }
     }
 

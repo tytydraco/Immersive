@@ -7,6 +7,8 @@ import android.widget.ListView
 
 class OptionFragment : PreferenceFragmentCompat() {
 
+    var callback: (() -> Unit)? = null
+
     lateinit var reset: () -> Unit
     lateinit var status: () -> Unit
     lateinit var nav: () -> Unit
@@ -64,5 +66,8 @@ class OptionFragment : PreferenceFragmentCompat() {
                 return@setOnPreferenceClickListener true
             }
         }
+
+        if (callback != null)
+            callback?.invoke()
     }
 }
