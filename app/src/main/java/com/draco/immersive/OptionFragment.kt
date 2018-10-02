@@ -46,6 +46,7 @@ class OptionFragment : PreferenceFragmentCompat() {
             }
 
             findPreference("exclude_systemui").icon = ContextCompat.getDrawable(context, R.drawable.ic_bug_report)
+            findPreference("full_hide").icon = ContextCompat.getDrawable(context, R.drawable.ic_fullscreen)
 
             findPreference("developer").icon = ContextCompat.getDrawable(context, R.drawable.ic_person)
             findPreference("developer").setOnPreferenceClickListener {

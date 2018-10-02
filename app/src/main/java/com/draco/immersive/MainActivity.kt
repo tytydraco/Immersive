@@ -20,11 +20,17 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     private lateinit var optFrag: OptionFragment
     private lateinit var prefs: SharedPreferences
     private var excludeSystemUI = false
+    private var fullHide = false
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
         if (p1 == "exclude_systemui") {
             if (p0 != null)
                 excludeSystemUI = p0.getBoolean("exclude_systemui", false)
+        }
+
+        if (p1 == "full_hide") {
+            if (p0 != null)
+                fullHide = p0.getBoolean("full_hide", false)
         }
     }
 
@@ -44,6 +50,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
             optFrag.callback = {
                 // set as currently set
                 excludeSystemUI = optFrag.preferenceManager.sharedPreferences.getBoolean("exclude_systemui", false)
+                fullHide = optFrag.preferenceManager.sharedPreferences.getBoolean("full_hide", false)
 
                 // check for permission before proceeding
                 permissionCheck(this) {
@@ -61,8 +68,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     private fun setupFragmentFunctions() {
         optFrag.reset = { immersiveModeReset() }
         optFrag.status = { immersiveModeStatus(excludeSystemUI) }
-        optFrag.nav = { immersiveModeNav(excludeSystemUI) }
-        optFrag.full = { immersiveModeFull(excludeSystemUI) }
+        optFrag.nav = { immersiveModeNav(excludeSystemUI, fullHide) }
+        optFrag.full = { immersiveModeFull(excludeSystemUI, fullHide) }
         optFrag.contact = {
             try {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("mailto:tylernij@gmail.com")))

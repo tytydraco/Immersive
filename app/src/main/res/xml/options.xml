@@ -26,6 +26,10 @@
             android:title="Exclude SystemUI"
             android:summary="Enable this if your device takes a long time to wake up. For this to take effect, reapply your immersive preference."
             android:key="exclude_systemui" />
+        <CheckBoxPreference
+            android:title="Full Hide"
+            android:summary="Swiping up will no longer bring up the navigation bar. For this to take effect, reapply your immersive preference."
+            android:key="full_hide" />
     </PreferenceCategory>
 
     <PreferenceCategory

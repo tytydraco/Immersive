@@ -1,6 +1,7 @@
 package com.draco.immersive
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.AsyncTask
@@ -12,6 +13,17 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 
 const val excludeSystemUI = ",-com.android.systemui"
+
+@SuppressLint("PrivateApi")
+fun setOverscan(display: Int, left: Int, top: Int, right: Int, bottom: Int) {
+    val service = Class.forName("android.view.WindowManagerGlobal")
+            .getMethod("getWindowManagerService")
+            .invoke(null)
+
+    Class.forName("android.view.IWindowManager")
+            .getMethod("setOverscan", Int::class.java, Int::class.java, Int::class.java, Int::class.java, Int::class.java)
+            .invoke(service, display, left, top, right, bottom)
+}
 
 fun asyncExec(func: () -> Unit) {
     object : AsyncTask<Unit, Unit, Unit>() {
@@ -75,18 +87,38 @@ fun permissionCheck(context: Context, callback: (() -> Unit)? = null) {
 
 fun MainActivity.immersiveModeReset() {
     Settings.Global.putString(contentResolver, "policy_control", "immersive.none=*")
+    setOverscan(0, 0, 0, 0, 0)
 }
 
-fun MainActivity.immersiveModeNav(exclude: Boolean) {
-    Settings.Global.putString(contentResolver, "policy_control", "immersive.navigation=*${if (exclude) excludeSystemUI else ""}")
+fun MainActivity.immersiveModeNav(exclude: Boolean, fullHide: Boolean) {
+    if (fullHide) {
+        val navHeightId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        val navHeight = resources.getDimensionPixelSize(navHeightId)
+        setOverscan(0, 0, 0, 0, -navHeight)
+        Settings.Global.putString(contentResolver, "policy_control", "immersive.none=*${if (exclude) excludeSystemUI else ""}")
+    } else {
+        setOverscan(0, 0, 0, 0, 0)
+        Settings.Global.putString(contentResolver, "policy_control", "immersive.navigation=*${if (exclude) excludeSystemUI else ""}")
+    }
+
 }
 
 fun MainActivity.immersiveModeStatus(exclude: Boolean) {
+    setOverscan(0, 0, 0, 0, 0)
     Settings.Global.putString(contentResolver, "policy_control", "immersive.status=*${if (exclude) excludeSystemUI else ""}")
 }
 
-fun MainActivity.immersiveModeFull(exclude: Boolean) {
-    Settings.Global.putString(contentResolver, "policy_control", "immersive.full=*${if (exclude) excludeSystemUI else ""}")
+fun MainActivity.immersiveModeFull(exclude: Boolean, fullHide: Boolean) {
+    if (fullHide) {
+        val navHeightId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        val navHeight = resources.getDimensionPixelSize(navHeightId)
+        setOverscan(0, 0, 0, 0, -navHeight)
+        Settings.Global.putString(contentResolver, "policy_control", "immersive.status=*${if (exclude) excludeSystemUI else ""}")
+    } else {
+        setOverscan(0, 0, 0, 0, 0)
+        Settings.Global.putString(contentResolver, "policy_control", "immersive.full=*${if (exclude) excludeSystemUI else ""}")
+    }
+
 }
 
 
