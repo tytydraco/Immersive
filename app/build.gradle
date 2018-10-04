@@ -7,9 +7,9 @@ android {
     defaultConfig {
         applicationId "com.draco.immersive"
         minSdkVersion 17
-        targetSdkVersion 28
-        versionCode 7
-        versionName "2.2.1"
+        targetSdkVersion 27
+        versionCode 8
+        versionName "2.2.2"
     }
     buildTypes {
         release {
