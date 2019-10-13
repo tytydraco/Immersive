@@ -70,7 +70,7 @@ fun permissionCheck(context: Context, callback: (() -> Unit)? = null, errorCallb
         val error = AlertDialog.Builder(context)
         error.setTitle("Missing Permissions")
         error.setMessage("To allow this app to work, you must run an ADB command via your computer.\n\nadb shell $permCommand")
-        error.setPositiveButton("Try Again") { _, _ -> permissionCheck(context) }
+        error.setPositiveButton("Try Again") { _, _ -> permissionCheck(context, callback, errorCallback) }
         error.setNeutralButton("Use Root") { _, _ ->
             if (isRoot()) {
                 asyncExec { run(permCommand, null, true) }
