@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Desktop-Immersive.iml" filepath="$PROJECT_DIR$/Desktop-Immersive.iml" />
       <module fileurl="file://$PROJECT_DIR$/Immersive.iml" filepath="$PROJECT_DIR$/Immersive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Immersive-app.iml" filepath="$PROJECT_DIR$/app/Immersive-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

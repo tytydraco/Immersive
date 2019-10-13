@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import kotlin.system.exitProcess
 
 const val excludeSystemUI = ",-com.android.systemui"
 
@@ -60,7 +61,7 @@ fun run(cmd: String, callback: ((String) -> Unit)?, asRoot: Boolean = false): St
     }
 }
 
-fun permissionCheck(context: Context, callback: (() -> Unit)? = null) {
+fun permissionCheck(context: Context, callback: (() -> Unit)? = null, errorCallback: (() -> Unit)? = null) {
     val permissionCheck = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_SECURE_SETTINGS)
     if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
         if (callback != null) callback()
@@ -79,7 +80,7 @@ fun permissionCheck(context: Context, callback: (() -> Unit)? = null) {
                 permissionCheck(context)
             }
         }
-        error.setNegativeButton("Close") { _, _ -> System.exit(0) }
+        error.setNegativeButton("Close") { _, _ -> if (errorCallback != null) errorCallback()}
         error.setCancelable(false)
         error.show()
     }

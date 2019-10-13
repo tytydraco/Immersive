@@ -53,9 +53,12 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                 fullHide = optFrag.preferenceManager.sharedPreferences.getBoolean("full_hide", false)
 
                 // check for permission before proceeding
-                permissionCheck(this) {
+                permissionCheck(this, {
                     setupFragmentFunctions()
-                }
+                },
+                {
+                    finish()
+                })
             }
 
             supportFragmentManager
