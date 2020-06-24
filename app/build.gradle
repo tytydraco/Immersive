@@ -6,7 +6,7 @@ android {
     compileSdkVersion 30
     defaultConfig {
         applicationId "com.draco.immersive"
-        minSdkVersion 17
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 9
         versionName "3.0"
