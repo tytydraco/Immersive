@@ -39,11 +39,11 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
             }
 
             "status" -> {
-                Settings.Global.putString(contentResolver, "policy_control", "immersive.navigation=*$suffix")
+                Settings.Global.putString(contentResolver, "policy_control", "immersive.status=*$suffix")
             }
 
             "navigation" -> {
-                Settings.Global.putString(contentResolver, "policy_control", "immersive.status=*$suffix")
+                Settings.Global.putString(contentResolver, "policy_control", "immersive.navigation=*$suffix")
             }
 
             "full" -> {
