@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="Immersive">
+        android:title="Actions">
         <Preference
+            android:icon="@drawable/ic_clear"
             android:title="Reset"
             android:summary="Reset all immersive settings to default."
             android:key="reset" />
         <Preference
+            android:icon="@drawable/ic_vertical_align_top"
             android:title="Status Bar"
             android:summary="Hide the status bar in all apps."
             android:key="status" />
         <Preference
+            android:icon="@drawable/ic_vertical_align_bottom"
             android:title="Navigation Bar"
             android:summary="Hide the navigation bar in all apps."
-            android:key="nav" />
+            android:key="navigation" />
         <Preference
+            android:icon="@drawable/ic_vertical_align_center"
             android:title="Full"
             android:summary="Hide both the status bar and the navigation bar in all apps."
             android:key="full" />
@@ -23,28 +27,27 @@
     <PreferenceCategory
         android:title="Settings">
         <CheckBoxPreference
+            android:icon="@drawable/ic_bug_report"
             android:title="Exclude SystemUI"
             android:summary="Enable this if your device takes a long time to wake up. For this to take effect, reapply your immersive preference."
             android:key="exclude_systemui" />
-        <CheckBoxPreference
-            android:title="Full Hide"
-            android:summary="Swiping up will no longer bring up the navigation bar. For this to take effect, reapply your immersive preference."
-            android:key="full_hide" />
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="About">
         <Preference
+            android:icon="@drawable/ic_person"
             android:title="Developer"
             android:summary="Draco (Tyler Nijmeh)"
             android:key="developer" />
         <Preference
+            android:icon="@drawable/ic_developer_board"
             android:title="Version"
-            android:summary=""
             android:key="version" />
         <Preference
+            android:icon="@drawable/ic_email"
             android:title="Contact"
-            android:summary="Email me for questions, comments, and concerns."
+            android:summary="Email me with questions, comments, or concerns."
             android:key="contact" />
     </PreferenceCategory>
 </PreferenceScreen>

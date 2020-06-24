@@ -1,94 +1,89 @@
 package com.draco.immersive
 
-import android.content.ActivityNotFoundException
-import android.content.Context
+import android.Manifest
 import android.content.Intent
-import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.CheckBoxPreference
-import android.preference.PreferenceManager
-import android.provider.Settings
-import android.util.AttributeSet
-import android.view.View
-import android.widget.Button
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import java.lang.Exception
+import kotlin.concurrent.fixedRateTimer
 
-
-class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
-
-    private lateinit var optFrag: OptionFragment
-    private lateinit var prefs: SharedPreferences
-    private var excludeSystemUI = false
-    private var fullHide = false
-
-    override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
-        if (p1 == "exclude_systemui") {
-            if (p0 != null)
-                excludeSystemUI = p0.getBoolean("exclude_systemui", false)
-        }
-
-        if (p1 == "full_hide") {
-            if (p0 != null)
-                fullHide = p0.getBoolean("full_hide", false)
-        }
-    }
+class MainActivity : AppCompatActivity() {
+    private val adbCommand = "pm grant ${BuildConfig.APPLICATION_ID} android.permission.WRITE_SECURE_SETTINGS"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(baseContext)
-        prefs.registerOnSharedPreferenceChangeListener(this)
+        /* Setup settings page */
+        val settingsFragment = SettingsFragment(contentResolver)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.settings, settingsFragment)
+            .commit()
 
-        // could end up with overlapping fragments
-        if (savedInstanceState == null) {
-            optFrag = OptionFragment()
-            optFrag.retainInstance = true
-
-            // task to execute after optFrag is initialized
-            optFrag.callback = {
-                // set as currently set
-                excludeSystemUI = optFrag.preferenceManager.sharedPreferences.getBoolean("exclude_systemui", false)
-                fullHide = optFrag.preferenceManager.sharedPreferences.getBoolean("full_hide", false)
-
-                // check for permission before proceeding
-                permissionCheck(this, {
-                    setupFragmentFunctions()
-                },
-                {
-                    finish()
-                })
-            }
-
-            supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.optContainer, optFrag)
-                    .commit()
-        }
+        /* Request permissions */
+        checkPermissions()
     }
 
-    private fun setupFragmentFunctions() {
-        optFrag.reset = { immersiveModeReset() }
-        optFrag.status = { immersiveModeStatus(excludeSystemUI) }
-        optFrag.nav = { immersiveModeNav(excludeSystemUI, fullHide) }
-        optFrag.full = { immersiveModeFull(excludeSystemUI, fullHide) }
-        optFrag.contact = {
-            try {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("mailto:tylernij@gmail.com")))
-            } catch (_: Exception) {}
-        }
-        optFrag.developer = {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Tyler+Nijmeh")))
-        }
-        optFrag.version = {
-            try {
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                intent.data = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
+    /* Run a command as superuser */
+    private fun sudo(command: String) {
+        try {
+            ProcessBuilder("su", "-c", command).start()
+        } catch (_: Exception) {}
+    }
+
+    private fun hasPermissions(): Boolean {
+        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS)
+        return permissionCheck == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun checkPermissions() {
+        if (hasPermissions())
+            return
+
+        val dialog = AlertDialog.Builder(this)
+                .setTitle("Missing Permissions")
+                .setMessage(getString(R.string.adb_tutorial) + "adb shell $adbCommand")
+                .setPositiveButton("Check Again", null)
+                .setNeutralButton("Setup ADB", null)
+                .setNegativeButton("Use Root", null)
+                .setCancelable(false)
+                .create()
+
+        dialog.setOnShowListener {
+            /* We don't dismiss on Check Again unless we actually have the permission */
+            val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setOnClickListener {
+                if (hasPermissions())
+                    dialog.dismiss()
+            }
+
+            /* Open tutorial but do not dismiss until user presses Check Again */
+            val neutralButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
+            neutralButton.setOnClickListener {
+                val uri = Uri.parse("https://www.xda-developers.com/install-adb-windows-macos-linux/")
+                val intent = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(intent)
-            } catch (e: ActivityNotFoundException) {
-                val intent = Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
-                startActivity(intent)
+            }
+
+            /* Try using root permissions */
+            val negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            negativeButton.setOnClickListener {
+                sudo(adbCommand)
+            }
+        }
+
+        dialog.show()
+
+        /* Check every second if the permission was granted */
+        fixedRateTimer("permissionCheck", false, 0, 1000) {
+            if (hasPermissions()) {
+                dialog.dismiss()
+                this.cancel()
             }
         }
     }
