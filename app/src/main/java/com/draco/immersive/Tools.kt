@@ -6,8 +6,8 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.AsyncTask
 import android.provider.Settings
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AlertDialog
 import android.widget.Toast
 import java.io.BufferedReader
 import java.io.InputStreamReader

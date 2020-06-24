@@ -1,8 +1,8 @@
 package com.draco.immersive
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.preference.PreferenceFragmentCompat
+import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceFragmentCompat
 import android.widget.ListView
 
 class OptionFragment : PreferenceFragmentCompat() {
