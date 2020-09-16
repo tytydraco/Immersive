@@ -36,13 +36,8 @@ class MainActivity : AppCompatActivity() {
         } catch (_: Exception) {}
     }
 
-    private fun hasPermissions(): Boolean {
-        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS)
-        return permissionCheck == PackageManager.PERMISSION_GRANTED
-    }
-
     private fun checkPermissions() {
-        if (hasPermissions())
+        if (hasPermissions(this))
             return
 
         val dialog = AlertDialog.Builder(this)
@@ -58,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             /* We don't dismiss on Check Again unless we actually have the permission */
             val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             positiveButton.setOnClickListener {
-                if (hasPermissions())
+                if (hasPermissions(this))
                     dialog.dismiss()
             }
 
@@ -81,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
         /* Check every second if the permission was granted */
         fixedRateTimer("permissionCheck", false, 0, 1000) {
-            if (hasPermissions()) {
+            if (hasPermissions(this@MainActivity)) {
                 dialog.dismiss()
                 this.cancel()
             }
