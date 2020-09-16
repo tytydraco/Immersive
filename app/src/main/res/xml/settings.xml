@@ -6,22 +6,22 @@
             android:icon="@drawable/ic_clear"
             android:title="Reset"
             android:summary="Reset all immersive settings to default."
-            android:key="reset" />
+            android:key="@string/pref_reset" />
         <Preference
             android:icon="@drawable/ic_vertical_align_top"
             android:title="Status Bar"
             android:summary="Hide the status bar in all apps."
-            android:key="status" />
+            android:key="@string/pref_status" />
         <Preference
             android:icon="@drawable/ic_vertical_align_bottom"
             android:title="Navigation Bar"
             android:summary="Hide the navigation bar in all apps."
-            android:key="navigation" />
+            android:key="@string/pref_navigation" />
         <Preference
             android:icon="@drawable/ic_vertical_align_center"
             android:title="Full"
             android:summary="Hide both the status bar and the navigation bar in all apps."
-            android:key="full" />
+            android:key="@string/pref_full"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -30,7 +30,7 @@
             android:icon="@drawable/ic_bug_report"
             android:title="Exclude SystemUI"
             android:summary="Enable this if your device takes a long time to wake up. For this to take effect, reapply your immersive preference."
-            android:key="exclude_systemui" />
+            android:key="@string/pref_exclude_systemui" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -39,15 +39,15 @@
             android:icon="@drawable/ic_person"
             android:title="Developer"
             android:summary="Draco (Tyler Nijmeh)"
-            android:key="developer" />
+            android:key="@string/pref_developer" />
         <Preference
             android:icon="@drawable/ic_developer_board"
             android:title="Version"
-            android:key="version" />
+            android:key="@string/pref_version" />
         <Preference
             android:icon="@drawable/ic_email"
             android:title="Contact"
             android:summary="Email me with questions, comments, or concerns."
-            android:key="contact" />
+            android:key="@string/pref_contact" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -18,7 +18,7 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
         setPreferencesFromResource(R.xml.settings, rootKey)
 
         /* Update the version code string */
-        val version = findPreference<Preference>("version")
+        val version = findPreference<Preference>(getString(R.string.pref_version))
         val flavor = if (BuildConfig.DEBUG)
             "debug"
         else
@@ -28,40 +28,40 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
 
     /* Process preference clicks */
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-        val suffix = if (findPreference<CheckBoxPreference>("exclude_systemui")!!.isChecked)
+        val suffix = if (findPreference<CheckBoxPreference>(getString(R.string.pref_exclude_systemui))!!.isChecked)
             excludeSystemUI
         else
             ""
 
         if (preference != null) when (preference.key) {
-            "reset" -> {
+            getString(R.string.pref_reset) -> {
                 Settings.Global.putString(contentResolver, "policy_control", "immersive.none=*")
             }
 
-            "status" -> {
+            getString(R.string.pref_status) -> {
                 Settings.Global.putString(contentResolver, "policy_control", "immersive.status=*$suffix")
             }
 
-            "navigation" -> {
+            getString(R.string.pref_navigation)-> {
                 Settings.Global.putString(contentResolver, "policy_control", "immersive.navigation=*$suffix")
             }
 
-            "full" -> {
+            getString(R.string.pref_full) -> {
                 Settings.Global.putString(contentResolver, "policy_control", "immersive.full=*$suffix")
             }
 
-            "developer" -> {
+            getString(R.string.pref_developer) -> {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Tyler+Nijmeh"))
                 startActivity(intent)
             }
 
-            "version" -> {
+            getString(R.string.pref_version) -> {
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 intent.data = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
                 startActivity(intent)
             }
 
-            "contact" -> {
+            getString(R.string.pref_contact) -> {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:tylernij@gmail.com"))
                 startActivity(intent)
             }

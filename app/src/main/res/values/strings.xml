@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">Immersive</string>
+
+    <string name="pref_reset">reset</string>
+    <string name="pref_status">status</string>
+    <string name="pref_navigation">navigation</string>
+    <string name="pref_full">full</string>
+    <string name="pref_exclude_systemui">exclude_systemui</string>
+    <string name="pref_developer">developer</string>
+    <string name="pref_version">version</string>
+    <string name="pref_contact">contact</string>
+
     <string name="adb_tutorial">
 "This app needs a special permission to set your device animation scales that can only be granted using a computer. This is a one time procedure.
 
