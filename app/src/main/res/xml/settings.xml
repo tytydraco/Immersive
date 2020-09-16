@@ -31,6 +31,11 @@
             android:title="Exclude SystemUI"
             android:summary="Enable this if your device takes a long time to wake up. For this to take effect, reapply your immersive preference"
             android:key="@string/pref_exclude_systemui" />
+        <Preference
+            android:icon="@drawable/ic_baseline_block_24"
+            android:title="Blocklist"
+            android:summary="Prevent Immersive from applying to some apps"
+            android:key="@string/pref_blocklist"/>
     </PreferenceCategory>
 
     <PreferenceCategory

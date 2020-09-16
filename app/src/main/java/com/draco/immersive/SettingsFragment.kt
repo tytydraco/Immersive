@@ -46,6 +46,11 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
                 Settings.Global.putString(contentResolver, "policy_control", "immersive.full=*$suffix")
             }
 
+            getString(R.string.pref_blocklist) -> {
+                val intent = Intent(requireContext(), BlocklistActivity::class.java)
+                startActivity(intent)
+            }
+
             getString(R.string.pref_developer) -> {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Tyler+Nijmeh"))
                 startActivity(intent)
