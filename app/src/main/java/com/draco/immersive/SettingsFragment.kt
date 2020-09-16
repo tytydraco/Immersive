@@ -8,11 +8,9 @@ import android.provider.Settings
 import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 
 class SettingsFragment(private val contentResolver: ContentResolver) : PreferenceFragmentCompat() {
-    /* Suffix to secure setting that excludes SystemUI from immersive mode */
-    private val excludeSystemUI = ",-com.android.systemui"
-
     /* Setup our preference screen */
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
@@ -28,10 +26,8 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
 
     /* Process preference clicks */
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-        val suffix = if (findPreference<CheckBoxPreference>(getString(R.string.pref_exclude_systemui))!!.isChecked)
-            excludeSystemUI
-        else
-            ""
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val suffix = getSuffix(requireContext(), sharedPrefs)
 
         if (preference != null) when (preference.key) {
             getString(R.string.pref_reset) -> {
