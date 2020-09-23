@@ -52,7 +52,9 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
 
             getString(R.string.pref_developer) -> {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Tyler+Nijmeh"))
-                startActivity(intent)
+                try {
+                    startActivity(intent)
+                } catch(_: Exception) {}
             }
 
             getString(R.string.pref_source_code) -> {
@@ -63,12 +65,16 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
             getString(R.string.pref_version) -> {
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 intent.data = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
-                startActivity(intent)
+                try {
+                    startActivity(intent)
+                } catch(_: Exception) {}
             }
 
             getString(R.string.pref_contact) -> {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:tylernij@gmail.com"))
-                startActivity(intent)
+                try {
+                    startActivity(intent)
+                } catch(_: Exception) {}
             }
 
             /* If we couldn't handle a preference click */
