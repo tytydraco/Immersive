@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory
-        android:title="Actions">
+    <PreferenceCategory android:title="@string/pref_actions">
         <Preference
             android:icon="@drawable/ic_clear"
             android:title="@string/pref_reset_title"
@@ -23,9 +22,7 @@
             android:summary="@string/pref_full_summary"
             android:key="@string/pref_full"/>
     </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="Settings">
+    <PreferenceCategory android:title="@string/pref_settings">
         <CheckBoxPreference
             android:icon="@drawable/ic_bug_report"
             android:title="@string/pref_exclude_systemui_title"
@@ -37,9 +34,7 @@
             android:summary="@string/pref_blocklist_summary"
             android:key="@string/pref_blocklist"/>
     </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="About">
+    <PreferenceCategory android:title="@string/pref_about">
         <Preference
             android:icon="@drawable/ic_person"
             android:title="@string/pref_developer_title"
