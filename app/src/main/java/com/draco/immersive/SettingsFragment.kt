@@ -55,6 +55,11 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
                 startActivity(intent)
             }
 
+            getString(R.string.pref_source_code) -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/tytydraco/Immersive"))
+                startActivity(intent)
+            }
+
             getString(R.string.pref_version) -> {
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 intent.data = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
