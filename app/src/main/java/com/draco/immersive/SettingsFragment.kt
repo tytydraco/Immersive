@@ -9,7 +9,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 
-class SettingsFragment(private val contentResolver: ContentResolver) : PreferenceFragmentCompat() {
+class SettingsFragment() : PreferenceFragmentCompat() {
     /* Setup our preference screen */
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
@@ -27,19 +27,19 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
 
         if (preference != null) when (preference.key) {
             getString(R.string.pref_reset) -> {
-                Settings.Global.putString(contentResolver, "policy_control", "immersive.none=*")
+                Settings.Global.putString(requireContext().contentResolver, "policy_control", "immersive.none=*")
             }
 
             getString(R.string.pref_status) -> {
-                Settings.Global.putString(contentResolver, "policy_control", "immersive.status=*$suffix")
+                Settings.Global.putString(requireContext().contentResolver, "policy_control", "immersive.status=*$suffix")
             }
 
             getString(R.string.pref_navigation)-> {
-                Settings.Global.putString(contentResolver, "policy_control", "immersive.navigation=*$suffix")
+                Settings.Global.putString(requireContext().contentResolver, "policy_control", "immersive.navigation=*$suffix")
             }
 
             getString(R.string.pref_full) -> {
-                Settings.Global.putString(contentResolver, "policy_control", "immersive.full=*$suffix")
+                Settings.Global.putString(requireContext().contentResolver, "policy_control", "immersive.full=*$suffix")
             }
 
             getString(R.string.pref_blocklist) -> {

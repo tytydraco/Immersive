@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         /* Setup settings page */
-        val settingsFragment = SettingsFragment(contentResolver)
+        val settingsFragment = SettingsFragment()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.settings, settingsFragment)
