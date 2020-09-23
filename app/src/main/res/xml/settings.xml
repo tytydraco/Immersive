@@ -54,5 +54,10 @@
             android:title="@string/pref_contact_title"
             android:summary="@string/pref_contact_summary"
             android:key="@string/pref_contact" />
+        <Preference
+            android:icon="@drawable/ic_baseline_insert_drive_file_24"
+            android:title="@string/pref_licenses_title"
+            android:summary="@string/pref_licenses_summary"
+            android:key="@string/pref_licenses" />
     </PreferenceCategory>
 </PreferenceScreen>

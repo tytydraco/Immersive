@@ -45,6 +45,10 @@
     <string name="pref_contact_title">Contact</string>
     <string name="pref_contact_summary">Email me with questions, comments, or concerns</string>
 
+    <string name="pref_licenses">licenses</string>
+    <string name="pref_licenses_title">Licenses</string>
+    <string name="pref_licenses_summary">View open source licenses</string>
+
     <string name="adb_tutorial">
 "This app needs a special permission to set your device animation scales that can only be granted using a computer. This is a one time procedure.
 

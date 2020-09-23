@@ -1,6 +1,5 @@
 package com.draco.immersive
 
-import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +7,7 @@ import android.provider.Settings
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 class SettingsFragment() : PreferenceFragmentCompat() {
     /* Setup our preference screen */
@@ -72,6 +72,11 @@ class SettingsFragment() : PreferenceFragmentCompat() {
                 try {
                     startActivity(intent)
                 } catch(_: Exception) {}
+            }
+
+            getString(R.string.pref_licenses) -> {
+                val intent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
+                startActivity(intent)
             }
 
             /* If we couldn't handle a preference click */
