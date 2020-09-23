@@ -16,10 +16,7 @@ class SettingsFragment(private val contentResolver: ContentResolver) : Preferenc
 
         /* Update the version code string */
         val version = findPreference<Preference>(getString(R.string.pref_version))
-        val flavor = if (BuildConfig.DEBUG)
-            "debug"
-        else
-            "release"
+        val flavor = if (BuildConfig.DEBUG) "debug" else "release"
         version!!.summary = "${BuildConfig.VERSION_NAME}-${flavor}"
     }
 
