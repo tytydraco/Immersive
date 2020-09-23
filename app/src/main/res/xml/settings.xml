@@ -4,23 +4,23 @@
         android:title="Actions">
         <Preference
             android:icon="@drawable/ic_clear"
-            android:title="Reset"
-            android:summary="Reset all immersive settings to default"
+            android:title="@string/pref_reset_title"
+            android:summary="@string/pref_reset_summary"
             android:key="@string/pref_reset" />
         <Preference
             android:icon="@drawable/ic_vertical_align_top"
-            android:title="Status bar"
-            android:summary="Hide the status bar in all apps"
+            android:title="@string/pref_status_title"
+            android:summary="@string/pref_status_summary"
             android:key="@string/pref_status" />
         <Preference
             android:icon="@drawable/ic_vertical_align_bottom"
-            android:title="Navigation bar"
-            android:summary="Hide the navigation bar in all apps"
+            android:title="@string/pref_navigation_title"
+            android:summary="@string/pref_navigation_summary"
             android:key="@string/pref_navigation" />
         <Preference
             android:icon="@drawable/ic_vertical_align_center"
-            android:title="Full"
-            android:summary="Hide both the status bar and the navigation bar in all apps"
+            android:title="@string/pref_full_title"
+            android:summary="@string/pref_full_summary"
             android:key="@string/pref_full"/>
     </PreferenceCategory>
 
@@ -28,13 +28,13 @@
         android:title="Settings">
         <CheckBoxPreference
             android:icon="@drawable/ic_bug_report"
-            android:title="Exclude SystemUI"
-            android:summary="Enable this if your device takes a long time to wake up. For this to take effect, reapply your immersive preference"
+            android:title="@string/pref_exclude_systemui_title"
+            android:summary="@string/pref_exclude_systemui_summary"
             android:key="@string/pref_exclude_systemui" />
         <Preference
             android:icon="@drawable/ic_baseline_block_24"
-            android:title="Blocklist"
-            android:summary="Prevent Immersive from applying to some apps"
+            android:title="@string/pref_blocklist_title"
+            android:summary="@string/pref_blocklist_summary"
             android:key="@string/pref_blocklist"/>
     </PreferenceCategory>
 
@@ -42,22 +42,22 @@
         android:title="About">
         <Preference
             android:icon="@drawable/ic_person"
-            android:title="Developer"
-            android:summary="Draco (Tyler Nijmeh)"
+            android:title="@string/pref_developer_title"
+            android:summary="@string/pref_developer_summary"
             android:key="@string/pref_developer" />
         <Preference
             android:icon="@drawable/ic_developer_board"
-            android:title="Version"
+            android:title="@string/pref_version_title"
             android:key="@string/pref_version" />
         <Preference
             android:icon="@drawable/ic_baseline_code_24"
-            android:title="Source code"
-            android:summary="View the open source code"
+            android:title="@string/pref_source_code_title"
+            android:summary="@string/pref_source_code_summary"
             android:key="@string/pref_source_code" />
         <Preference
             android:icon="@drawable/ic_email"
-            android:title="Contact"
-            android:summary="Email me with questions, comments, or concerns"
+            android:title="@string/pref_contact_title"
+            android:summary="@string/pref_contact_summary"
             android:key="@string/pref_contact" />
     </PreferenceCategory>
 </PreferenceScreen>

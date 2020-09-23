@@ -3,15 +3,43 @@
     <string name="blocklist">Blocklist</string>
 
     <string name="pref_reset">reset</string>
+    <string name="pref_reset_title">Reset</string>
+    <string name="pref_reset_summary">Unhide both the status and navigation bar</string>
+
     <string name="pref_status">status</string>
+    <string name="pref_status_title">Status bar</string>
+    <string name="pref_status_summary">Hide the status bar</string>
+
     <string name="pref_navigation">navigation</string>
+    <string name="pref_navigation_title">Navigation bar</string>
+    <string name="pref_navigation_summary">Hide the navigation bar</string>
+
     <string name="pref_full">full</string>
+    <string name="pref_full_title">Full</string>
+    <string name="pref_full_summary">Hide both the status and navigation bar</string>
+
     <string name="pref_exclude_systemui">exclude_systemui</string>
+    <string name="pref_exclude_systemui_title">Exclude SystemUI</string>
+    <string name="pref_exclude_systemui_summary">Enable this if your device takes a long time to wake up</string>
+
     <string name="pref_blocklist">blocklist</string>
+    <string name="pref_blocklist_title">Blocklist</string>
+    <string name="pref_blocklist_summary">Always show both bars for these apps</string>
+
     <string name="pref_developer">developer</string>
+    <string name="pref_developer_title">Developer</string>
+    <string name="pref_developer_summary">tytydraco (Tyler Nijmeh)</string>
+
     <string name="pref_version">version</string>
+    <string name="pref_version_title">Version</string>
+
     <string name="pref_source_code">source_code</string>
+    <string name="pref_source_code_title">Source code</string>
+    <string name="pref_source_code_summary">Inspect the source code on GitHub</string>
+
     <string name="pref_contact">contact</string>
+    <string name="pref_contact_title">Contact</string>
+    <string name="pref_contact_summary">Email me with questions, comments, or concerns</string>
 
     <string name="adb_tutorial">
 "This app needs a special permission to set your device animation scales that can only be granted using a computer. This is a one time procedure.
