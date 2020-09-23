@@ -9,10 +9,20 @@ import kotlin.concurrent.fixedRateTimer
 
 class MainActivity : AppCompatActivity() {
     private val adbCommand = "pm grant ${BuildConfig.APPLICATION_ID} android.permission.WRITE_SECURE_SETTINGS"
+    private lateinit var dialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        dialog = AlertDialog.Builder(this)
+                .setTitle("Missing Permissions")
+                .setMessage(getString(R.string.adb_tutorial) + "adb shell $adbCommand")
+                .setPositiveButton("Check Again", null)
+                .setNeutralButton("Setup ADB", null)
+                .setNegativeButton("Use Root", null)
+                .setCancelable(false)
+                .create()
 
         /* Setup settings page */
         val settingsFragment = SettingsFragment()
@@ -25,25 +35,9 @@ class MainActivity : AppCompatActivity() {
         checkPermissions()
     }
 
-    /* Run a command as superuser */
-    private fun sudo(command: String) {
-        try {
-            ProcessBuilder("su", "-c", command).start()
-        } catch (_: Exception) {}
-    }
-
     private fun checkPermissions() {
         if (hasPermissions(this))
             return
-
-        val dialog = AlertDialog.Builder(this)
-                .setTitle("Missing Permissions")
-                .setMessage(getString(R.string.adb_tutorial) + "adb shell $adbCommand")
-                .setPositiveButton("Check Again", null)
-                .setNeutralButton("Setup ADB", null)
-                .setNegativeButton("Use Root", null)
-                .setCancelable(false)
-                .create()
 
         dialog.setOnShowListener {
             /* We don't dismiss on Check Again unless we actually have the permission */
@@ -64,18 +58,14 @@ class MainActivity : AppCompatActivity() {
             /* Try using root permissions */
             val negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
             negativeButton.setOnClickListener {
-                sudo(adbCommand)
+                try {
+                    ProcessBuilder("su", "-c", adbCommand).start()
+                    if (hasPermissions(this))
+                        dialog.dismiss()
+                } catch (_: Exception) {}
             }
         }
 
         dialog.show()
-
-        /* Check every second if the permission was granted */
-        fixedRateTimer("permissionCheck", false, 0, 1000) {
-            if (hasPermissions(this@MainActivity)) {
-                dialog.dismiss()
-                this.cancel()
-            }
-        }
     }
 }
