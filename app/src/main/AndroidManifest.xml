@@ -22,9 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BlocklistActivity"
-            android:screenOrientation="portrait"
-            android:label="Blocklist" />
+        <activity android:name=".BlocklistActivity" android:label="@string/blocklist" />
         <service android:name=".tiles.ResetTileService"
             android:label="Reset"
             android:icon="@drawable/ic_clear"
