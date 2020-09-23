@@ -1,14 +1,10 @@
 package com.draco.immersive
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import java.lang.Exception
 import kotlin.concurrent.fixedRateTimer
 
 class MainActivity : AppCompatActivity() {
