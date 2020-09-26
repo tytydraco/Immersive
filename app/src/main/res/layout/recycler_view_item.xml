@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingVertical="12dp"
+    android:paddingVertical="8dp"
     android:paddingHorizontal="12dp">
     <CheckBox
         android:layout_width="match_parent"
@@ -11,6 +11,5 @@
         android:paddingHorizontal="8dp"
         android:ellipsize="end"
         android:id="@+id/checkbox"
-        android:drawablePadding="18dp"
-        android:textSize="18sp" />
+        android:drawablePadding="18dp" />
 </LinearLayout>
