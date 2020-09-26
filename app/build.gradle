@@ -9,8 +9,8 @@ android {
         applicationId "com.draco.immersive"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 15
-        versionName "4.1.4"
+        versionCode 16
+        versionName "4.1.5"
     }
     buildTypes {
         release {
