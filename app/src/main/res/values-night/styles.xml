@@ -1,5 +1,0 @@
-<resources>
-    <style name="AppTheme.DayNight" parent="Theme.MaterialComponents">
-        <item name="colorAccent">@color/colorSecondary</item>
-    </style>
-</resources>
