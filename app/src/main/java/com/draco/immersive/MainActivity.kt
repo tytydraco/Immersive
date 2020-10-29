@@ -5,7 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.concurrent.fixedRateTimer
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
     private val adbCommand = "pm grant ${BuildConfig.APPLICATION_ID} android.permission.WRITE_SECURE_SETTINGS"
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        dialog = AlertDialog.Builder(this)
+        dialog = MaterialAlertDialogBuilder(this)
                 .setTitle("Missing Permissions")
                 .setMessage(getString(R.string.adb_tutorial) + "adb shell $adbCommand")
                 .setPositiveButton("Check Again", null)

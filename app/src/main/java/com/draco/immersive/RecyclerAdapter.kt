@@ -5,8 +5,8 @@ import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.checkbox.MaterialCheckBox
 import kotlin.math.roundToInt
 
 class RecyclerAdapter(
@@ -17,7 +17,7 @@ class RecyclerAdapter(
     private var checkedItems = arrayListOf<String>()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val checkbox = itemView.findViewById(R.id.checkbox) as CheckBox
+        val checkbox = itemView.findViewById(R.id.checkbox) as MaterialCheckBox
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
